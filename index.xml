@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pixenjoy</title>
+    <link>https://pixenjoy.com/</link>
+    <description>Recent content on pixenjoy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 27 Feb 2016 11:33:28 +0100</lastBuildDate>
+    <atom:link href="https://pixenjoy.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Créer un blog avec Hugo</title>
+      <link>https://pixenjoy.com/2016/02/27/cr%C3%A9er-un-blog-avec-hugo</link>
+      <pubDate>Sat, 27 Feb 2016 11:33:28 +0100</pubDate>
+      
+      <guid>https://pixenjoy.com/2016/02/27/cr%C3%A9er-un-blog-avec-hugo</guid>
+      <description>
+
+&lt;p&gt;J’ai décidé de remettre sur pied mon blog pixenjoy.com en utilisant non plus un CMS lié à une base de données type WordPress, mais via un site statique, c’est à dire composé uniquement de fichier html, css et js. Le concepte de site statique n’est pas nouveau en revanche les outils pour générer ce type de site ont beaucoup évolués et se sont multipliés.&lt;/p&gt;
+
+&lt;p&gt;Pourquoi ce choix ? D’une part par curiosité. J’avais envie de découvrir autre chose que WordPress que j’utilise abondament dans mes projets professionnels. D’autre part pour la simplicité et les performances que cela apporte.&lt;/p&gt;
+
+&lt;h3 id=&#34;simplicité-et-performance:60a00f8c7e075f7886f72bb4fcb38528&#34;&gt;Simplicité et performance&lt;/h3&gt;
+
+&lt;p&gt;Pour certains usages comme le bloging, les sites vitrines, une landing page &amp;hellip; un site internet n&amp;rsquo;a pas nécessairement besoin d&amp;rsquo;une base de données. A partir de ce moment là, l&amp;rsquo;usage d&amp;rsquo;un langage interprété comme php ne se justifie pas et l&amp;rsquo;utilisation de fichiers html/css/js peut suffir. On gagne alors en simplicité. Moins de langages informatiques à utiliser, pas de CMS, plugins ou themes à mettre à jour pour assurer des patchs de sécurité, pas de base de données à sauvegarder/restaurer. Le déploiement et la sauvegarde s&amp;rsquo;en trouve également simplifié puisque nous avons uniquement des fichiers statiques à traiter. Par exemple un simple dépôt git distant peut faire l&amp;rsquo;affaire. Pour migrer votre site, copier/coller vos fichiers sur votre nouveau serveur et l&amp;rsquo;affaire est pliée.&lt;/p&gt;
+
+&lt;p&gt;Pour des besoins plus spécifiques comme les formulaires ou un pannier d&amp;rsquo;achat, des services tiers peuvent être implémentés. En revanche, si votre site nécessite que de nombreux utilisateurs externes mettent à jour des informations du site, un site dynamique sera plus adapté.&lt;/p&gt;
+
+&lt;p&gt;Avec un site purement statique, nous gagnons également en performance. En effet, le serveur ne fait aucun calcul pour générer la page html mais se contente simplement de renvoyer celle-ci telle qu’elle est hébergée sur le serveur. Vous consommez donc moins de ressources serveur pour afficher les pages de votre site web. Si vous ajoutez l&amp;rsquo;usage d&amp;rsquo;un CDN, une pincée de minification et un zeste de gzip, vous obtiendrez un site insolemment rapide.&lt;/p&gt;
+
+&lt;h3 id=&#34;hugo:60a00f8c7e075f7886f72bb4fcb38528&#34;&gt;Hugo&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io&#34; title=&#34;Hugo&#34;&gt;Hugo&lt;/a&gt; est un générateur de site statique écrit en &lt;a href=&#34;https://golang.org/&#34; title=&#34;Goland&#34;&gt;langage Go&lt;/a&gt;. Il existe de nombreux autres &lt;a href=&#34;https://www.staticgen.com/&#34; title=&#34;staticgen&#34;&gt;outils similaires&lt;/a&gt; écrits dans différents langages. Jekyll, Middleman ou Metalsmith sont quelques exemples cependant mon choix s&amp;rsquo;est porté sur Hugo pour sa légerté, sa rapidité, sa simplicité d&amp;rsquo;installation et sa portabilité.&lt;/p&gt;
+
+&lt;h4 id=&#34;installation-d-hugo:60a00f8c7e075f7886f72bb4fcb38528&#34;&gt;Installation d&amp;rsquo;Hugo&lt;/h4&gt;
+
+&lt;p&gt;Pour installer Hugo en local, &lt;a href=&#34;https://github.com/spf13/hugo/releases&#34; title=&#34;Hugo download&#34;&gt;téléchargez&lt;/a&gt; l&amp;rsquo;executable correspondant à votre environnement système. Une fois l&amp;rsquo;archive ouverte, placez l&amp;rsquo;executable dans un dossier déclaré dans votre PATH afin de pouvoir lancer les commandes Hugo dans un terminal. Personnellement, sous environnement Linux, j&amp;rsquo;ai créer un dossier /home/gilles/bin que j&amp;rsquo;ai déclaré dans mon PATH et dans lequel j&amp;rsquo;ai déposé l&amp;rsquo;executable Hugo.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Visualiser les dossiers déclaré dans son PATH
+$ echo $PATH
+
+# Ajouter un dossier dans son PATH
+$ export PATH=$PATH:/home/gilles/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Vérifier que l&amp;rsquo;éxecutable a bien les droits d&amp;rsquo;éxecution. Ouvrez ensuite un terminal et taper:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ hugo help
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Vous devriez voir l&amp;rsquo;ensemble des commandes et des options d&amp;rsquo;Hugo. Enfin, si vous avez besoin de mettre à jour Hugo, supprimez l&amp;rsquo;executable et remplacer le par la dernière version.&lt;/p&gt;
+
+&lt;h4 id=&#34;création-d-un-nouveau-site:60a00f8c7e075f7886f72bb4fcb38528&#34;&gt;Création d&amp;rsquo;un nouveau site&lt;/h4&gt;
+
+&lt;p&gt;Pour générer un nouveau site dans un dossier &amp;ldquo;pixenjoy&amp;rdquo; à l&amp;rsquo;aide d&amp;rsquo;Hugo, tapez dans un terminal :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ hugo new site ~/Bureau/pixenjoy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hugo va générer automatiquement une arborescence de fichiers et de dossiers qui constituera un squelette vide de votre environnement de travail. Le fichier config.toml est le fichier de configuration. Nos contenus, sous forme de fichiers Markdown, seront stockés dans le dossier /content. Pour plus de détails sur le fonctionnement d&amp;rsquo;Hugo et de son organisation de fichiers, je vous laisse consulter la &lt;a href=&#34;https://gohugo.io/overview/introduction/&#34; title=&#34;documentation&#34;&gt;documentation&lt;/a&gt; officielle.&lt;/p&gt;
+
+&lt;p&gt;A ce stade, nous n&amp;rsquo;avons aucun contenu ni template pour notre site. Hugo comme WordPress peut fonctionner avec un système de thèmes pour définir la structure de votre site. Vous pouvez créer votre &lt;a href=&#34;https://gohugo.io/themes/creation/&#34; title=&#34;theme&#34;&gt;propre thème&lt;/a&gt; ou télécharger un &lt;a href=&#34;http://themes.gohugo.io/&#34; title=&#34;themes gallery&#34;&gt;theme existant&lt;/a&gt;. Pour pixenjoy.com, je suis partie d&amp;rsquo;un thème existant: &lt;a href=&#34;github.com/digitalcraftsman/hugo-hikari-theme&#34; title=&#34;Hikari theme&#34;&gt;Hikari&lt;/a&gt; disponible sur Github. Son design est très épuré mais le texte est lisible, il intègre le système de commentaires Disqus et l&amp;rsquo;outil d&amp;rsquo;analyse de metrics Google Analytics (que je n&amp;rsquo;utilise pas).&lt;/p&gt;
+
+&lt;h4 id=&#34;installation-d-un-thème-existant:60a00f8c7e075f7886f72bb4fcb38528&#34;&gt;Installation d&amp;rsquo;un thème existant&lt;/h4&gt;
+
+&lt;p&gt;Pour installer un thème, créez un dossier /themes à la racince de votre environnement de travail Hugo puis placez vous dans ce dossier pour y télécharger le thème.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd pixenjoy
+$ mkdir themes
+$ cd themes
+$ git clone https://github.com/digitalcraftsman/hugo-hikari-theme.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Il faut modifier le fichier de configuration config.toml situé à la racine pour qu&amp;rsquo;il s&amp;rsquo;adapte au nouveau thème. Pour cela remplacez le fichier existant par celui se trouvant dans:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/Bureau/pixenjoy/themes/hugo-hikari-theme/exampleSite/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ouvrez le fichier de configuration et modifiez le en conséquence.&lt;/p&gt;
+
+&lt;p&gt;Maintenant, il ne vous reste plus qu&amp;rsquo;à ajouter du contenu et à compiler les fichiers via Hugo pour qu&amp;rsquo;il génère vos fichiers statiques constituant votre site web. Ensuite vous pourez déployer ces fichiers sur votre serveur distant.&lt;/p&gt;
+
+&lt;h4 id=&#34;ajouter-du-contenu:60a00f8c7e075f7886f72bb4fcb38528&#34;&gt;Ajouter du contenu&lt;/h4&gt;
+
+&lt;p&gt;Les contenus de votre site (articles et pages) devront être déposés dans le dossier pixenjoy/content/ avec l&amp;rsquo;extension .md Par défaut, les contenus dans Hugo sont écrits à l&amp;rsquo;aide du langage &lt;a href=&#34;http://daringfireball.net/projects/markdown/syntax&#34; title=&#34;Markdown syntax&#34;&gt;Markdown&lt;/a&gt;, une écriture simple à base de balises qui seront traduites par Hugo dans leurs équivalents html. Vous pouvez générer les squelettes de ces pages/articles via des lignes de commandes Hugo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Création d&#39;un article
+$ cd pixenjoy/content/
+$ hugo new post/first-post.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Si vous êtes allergique à la ligne de commande, vous pouvez aussi créer votre fichier first-post.md dans votre éditeur de code et le déposer dans un dossier content/post/. Pour en savoir plus sur l&amp;rsquo;organisation du contenu, la gestion des slugs et des URLs, consultez la &lt;a href=&#34;http://gohugo.io/content/organization/&#34; title=&#34;content organization&#34;&gt;documentation&lt;/a&gt; officielle.&lt;/p&gt;
+
+&lt;p&gt;Avec Hugo les fichiers Markdown débutent avec des meta données (titre, description, date, statut editorial, taxonomie, slug, url &amp;hellip; ) écrit par défaut en Toml et identifié par le balisage &amp;ldquo;+++&amp;rdquo; mais vous pouvez aussi configurer Hugo pour utiliser du YAML ou du JSON. Après les meta données, vous pouvez écrire votre contenu avec un balisage Markdown et éventuellement html si le Markdown ne vous permet pas certains formatages du texte.&lt;/p&gt;
+
+&lt;p&gt;Reportez-vous à la documentation de votre thème pour plus de détails sur la gestion spécifique des meta données de votre thème.&lt;/p&gt;
+
+&lt;p&gt;Voici par exemple le début de la synthaxe de cet article:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+++
+date = &amp;quot;2016-02-27T11:33:28+01:00&amp;quot;
+description = &amp;quot;Créer un blog avec hugo&amp;quot;
+title = &amp;quot;Créer un blog avec Hugo&amp;quot;
++++
+
+J’ai décidé de relancer mon blog ...
+Pourquoi ce choix ? D’une part ...
+### Simplicité et performance
+Pour certains usages ...
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;générer-son-site-statique-et-le-visualiser:60a00f8c7e075f7886f72bb4fcb38528&#34;&gt;Générer son site statique et le visualiser&lt;/h4&gt;
+
+&lt;p&gt;Pour générer vos fichiers statiques, il faut demander à Hugo de transformer vos fichiers Markdown en fichiers html. Cela peut se faire soit en ligne de commande soit en utilisant le mode &amp;ldquo;Watch&amp;rdquo; du serveur interne disponible dans Hugo.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Générer vos fichiers en ligne de commande
+$ hugo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Personnellement, en local, je préfère démarrer le serveur web d&amp;rsquo;Hugo en mode &amp;ldquo;Watch&amp;rdquo; et celui-ci est à l&amp;rsquo;écoute pour regénèrer mon site à chaque sauvegarde de mes changements effectués via mon éditeur de code. Un mode &amp;ldquo;Reload&amp;rdquo; recharge automatiquement vos pages dans le navigateur. Votre site est visible à l&amp;rsquo;URL &lt;a href=&#34;http://localhost:1313&#34;&gt;http://localhost:1313&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Démarrer le serveur web d&#39;Hugo en mode watch
+$ hugo server -w
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lorsque Hugo génère votre site statique, il place l&amp;rsquo;ensemble des fichiers dans un dossier /public C&amp;rsquo;est le contenu de ce dossier qu&amp;rsquo;il faudra copier sur votre serveur de production pour déployer votre site web.&lt;/p&gt;
+
+&lt;h4 id=&#34;déployer-votre-site-en-production:60a00f8c7e075f7886f72bb4fcb38528&#34;&gt;Déployer votre site en production&lt;/h4&gt;
+
+&lt;p&gt;Vous pouvez bien sûr copier le contenu du fichier /public à la racine de votre serveur de production via un logiciel (S)FTP mais le FTP en 2016, c&amp;rsquo;est has been!&lt;/p&gt;
+
+&lt;p&gt;Une solution plus &amp;ldquo;dev opt&amp;rdquo; serait dans un premier temps de versionner votre code pour pusher celui-ci sur un dépôt distant Github, Bitbucket ou &lt;a href=&#34;https://about.gitlab.com/&#34; title=&#34;GitLab&#34;&gt;Gitlab&lt;/a&gt;. Vous aurez ainsi un historique et une sauvegarde de votre site même si la sauvegarde n&amp;rsquo;est pas la raison d&amp;rsquo;être du versionning. Quelque soit le poste d&amp;rsquo;où vous travaillerez, vous pourrez faire un pull de votre site pour récupérer le code puis y apporter des modifications. Une fois vos modifications terminées, vous re-pusherez le code sur le dépôt distant. Le versionning vous permettra également d&amp;rsquo;éffectuer des rollback, des branches &amp;hellip; mais les avantages du versionning ce n&amp;rsquo;est pas le sujet de cet article.&lt;/p&gt;
+
+&lt;p&gt;Dans un second temps, utilisez une solution qui déploie votre code versionné directement sur votre site de production lorsque vous effectuez un commit &amp;amp; push. Il existe plusieurs services et outils de ce type.&lt;/p&gt;
+
+&lt;p&gt;Pour pixenjoy.com, j&amp;rsquo;utilise le service &lt;a href=&#34;https://www.aerobatic.com/&#34; title=&#34;Aerobatic&#34;&gt;Aerobatic&lt;/a&gt; qui propose un espace d&amp;rsquo;hébergement avec une offre gratuite pour un nom de domaine personnel et 2 sites. Vous aurez également droit à un certificat SSL, l&amp;rsquo;usage d&amp;rsquo;un CDN et &lt;a href=&#34;https://www.aerobatic.com/features/&#34; title=&#34;Aerobatic features&#34;&gt;d&amp;rsquo;autres fonctionnalités&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;conclusion:60a00f8c7e075f7886f72bb4fcb38528&#34;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;Soyez conscient que cette solution s&amp;rsquo;adresse à des personnes ayant un minimum de compétences informatiques. Il n&amp;rsquo;existe pas encore de solution vraiement &amp;ldquo;user friendly&amp;rdquo; pour permettre à un utilisateur lambda de modifier le contenu via un backoffice par exemple. Des pistes qui vont dans ce sens existent mais nous sommes encore loin de la convivialité d&amp;rsquo;un espace d&amp;rsquo;administration tel que l&amp;rsquo;on trouve sur WordPress ou un autre CMS.&lt;/p&gt;
+
+&lt;p&gt;En revanche, si vous êtes un peu Geek, maintenez un blog et voulez une solution simple, performante et economique, vous pouvez opter pour la solution du site statique géré via un générateur de sites statiques. Fini les galères de gestion de la sécurité, des mises à jours et procédures de backup fastidieuses, des optimisations complexes de performance.&lt;/p&gt;
+
+&lt;p&gt;Avec Hugo, vous vous concentrez sur votre contenu plutôt que de dépenser votre energie à administrer et maintenir un système complexe.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
